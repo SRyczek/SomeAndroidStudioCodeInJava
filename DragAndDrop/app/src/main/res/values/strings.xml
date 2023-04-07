@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">DragAndDrop</string>
+    <string name="image1">image</string>
+    <string name="like">I like you</string>
+    <string name="Simple_Text">Simple text</string>
+    <string name="razdwa">RazDwa</string>
+    <string name="dzien_dobry">Dzien dobry</string>
+    <string name="first_try">First try</string>
+</resources>
