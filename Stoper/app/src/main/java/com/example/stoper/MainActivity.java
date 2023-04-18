@@ -1,7 +1,11 @@
 package com.example.stoper;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ClipData;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -9,23 +13,42 @@ import android.widget.Button;
 import android.app.Activity;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity
 {
-   public Button start;
-   public Button stop;
+   public Button start, save, stop;
    public TextView timer;
    long now, time, init, stopValue, initStop;
    boolean running;
+   RecyclerView recyclerView;
+
+
+
    @Override
    protected void onCreate(Bundle savedInstanceState)
    {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_main);
+
       timer =  findViewById(R.id.time);
       start = findViewById(R.id.startButton);
       stop = findViewById(R.id.stopButton);
+      save = findViewById(R.id.saveButton);
+
       Handler handler = new Handler();
       running = false;
+
+      RecyclerView recyclerView = findViewById(R.id.recyclerView);
+
+      ArrayList<timeData> items = new ArrayList<timeData>();
+      items.add(new timeData(10, 10));
+      items.add(new timeData(12, 13));
+      recyclerView.setLayoutManager(new LinearLayoutManager(this));
+      recyclerView.setAdapter(new myAdapter(getApplicationContext(), items));
+
+
       final Runnable updater = new Runnable()
       {
          @Override
@@ -40,6 +63,8 @@ public class MainActivity extends AppCompatActivity
             }
          }
       };
+
+
 
       start.setOnClickListener(new View.OnClickListener()
       {
@@ -74,7 +99,16 @@ public class MainActivity extends AppCompatActivity
             handler.post(updater);
          }
       });
+      save.setOnClickListener(new View.OnClickListener()
+      {
+         @Override
+         public void onClick(View v)
+         {
+            items.add(new timeData(12, 13));
+            recyclerView.setAdapter(new myAdapter(getApplicationContext(), items));
+         }
 
+      });
 
    }
 }
