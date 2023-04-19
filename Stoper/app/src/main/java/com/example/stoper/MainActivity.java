@@ -43,8 +43,6 @@ public class MainActivity extends AppCompatActivity
       RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
       ArrayList<timeData> items = new ArrayList<timeData>();
-      items.add(new timeData(10, 10));
-      items.add(new timeData(12, 13));
       recyclerView.setLayoutManager(new LinearLayoutManager(this));
       recyclerView.setAdapter(new myAdapter(getApplicationContext(), items));
 
@@ -104,8 +102,9 @@ public class MainActivity extends AppCompatActivity
          @Override
          public void onClick(View v)
          {
-            items.add(new timeData(12, 13));
+            items.add(new timeData(time, 13));
             recyclerView.setAdapter(new myAdapter(getApplicationContext(), items));
+
          }
 
       });
