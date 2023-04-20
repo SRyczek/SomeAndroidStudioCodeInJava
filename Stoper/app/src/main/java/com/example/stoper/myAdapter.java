@@ -17,12 +17,12 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder>
 
    Context context;
    ArrayList<timeData> data;
-   int clickNum;
-   long timeSet;
+   String s1, s2 , s3;
    public myAdapter(Context context, ArrayList<timeData> data)
    {
       this.context = context;
       this.data = data;
+
    }
 
    @NonNull
@@ -36,11 +36,16 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder>
    @Override
    public void onBindViewHolder(@NonNull ViewHolder holder, int position)
    {
-      clickNum++;
       timeData tD = data.get(position);
-      timeSet = data.get(clickNum - 1).data;
-      holder.num.setText(String.valueOf(clickNum));
-      holder.tim.setText(timeSet / 1000 + ":" + (timeSet / 10) % 100);
+      //s1 = String.valueOf(data.get(data.size()-1).data / 1000);
+      //s2 = String.valueOf((data.get(data.size()-1).data / 10) % 100);
+      s1 = String.valueOf(data.get(position).data / 1000);
+      s2 = String.valueOf((data.get(position).data / 10) % 100);
+      s3 = s1 + ":" + s2;
+      holder.num.setText(String.valueOf(position + 1));
+     // holder.tim.setText(timeSet / 1000 + ":" + (timeSet / 10) % 100);
+      holder.tim.setText(s3);
+
    }
 
    @Override
